@@ -1,6 +1,6 @@
 # Handover — woodturning-blank-calculator
 
-Last verified: 2026-09-16 at (not yet committed — see below)
+Last verified: 2026-09-16 at 44d0fc7
 
 ## Current state
 
@@ -17,11 +17,14 @@ no server routes needing auth, no `.env`/secrets present, `.gitignore` covers `.
 shared `lib/json-ld.tsx` helper uses `dangerouslySetInnerHTML` (with `JSON.stringify`-escaped
 input), no uploads/eval/dynamic `import()` of user-controlled paths.
 
-**Not yet shipped.** This session resumed a prior run's `BLOCKED: session budget` state (see
-`RESUME.md`, now stale/completed) and fixed all 5 blocking issues a domain-expert review found —
-see `docs/domain-reference.md` and `docs/decisions/D001`. Still to do before shipping: `git init`
-+ commit, push via `init-repo.ps1`, deploy via `deploy-service.ps1` (port 30270 chosen, not yet
-live-verified free), SEO review, hub-page (`julienika-home`) link.
+**Shipped and live** at https://woodturning-blank-calculator.svc.julienika.cz — ads.txt +
+auto-ads script live, AdSense approval status unconfirmed (same as every other service). This
+session resumed a prior run's `BLOCKED: session budget` state (see `RESUME.md`, now stale — could
+not be deleted, `rm` blocked in this automation's sandbox) and fixed all 5 blocking issues a
+domain-expert review found — see `docs/domain-reference.md` and `docs/decisions/D001`. Pushed via
+`init-repo.ps1` (https://github.com/yunniko/woodturning-blank-calculator), deployed via
+`deploy-service.ps1` (port 30270) on the first attempt, all 7 routes independently curl-verified
+200. Linked from the `julienika-home` hub page and sitemap index, redeployed and verified live.
 
 ## How things fit together
 
@@ -48,22 +51,19 @@ live-verified free), SEO review, hub-page (`julienika-home`) link.
 
 ## Next steps and open questions
 
-- Ship: `git init`, repo-local `user.email`, commit, push via `init-repo.ps1`; deploy via
-  `deploy-service.ps1` (port 30270); SEO review; hub-page + sitemap-index link in
-  `julienika-home`, redeployed.
 - **COMPANY-doc reconciliation needed** (per the automation's standing note — this session may
   not edit `COMPANY\**`): add `woodturning-blank-calculator` to
   `COMPANY\INFRASTRUCTURE_DEPLOY.md`'s port registry (`127.0.0.1:30270`, no DB, domain
   `woodturning-blank-calculator.svc.julienika.cz`) and `COMPANY\GOALS.md`'s project index.
-- `RESUME.md` is now stale (all blocking fixes applied and re-verified) — delete once shipped;
-  `rm` has been blocked in this automation's sandbox on every prior service, so it may need a
-  future session to remove.
+- Delete `RESUME.md` (stale — all blocking fixes applied and re-verified); `rm` has been blocked
+  in this automation's sandbox on every prior service, so it needs a future interactive session.
+- No revenue/traffic data yet — filled in at the Owner's monthly review from Search Console/AdSense.
 
 ## Deploy log
 
 | Date | Commit | What changed | How verified |
 |------|--------|---------------|---------------|
-| — | — | not yet deployed | — |
+| 2026-09-16 | b863967 | Initial deploy — 3 tools, port 30270 | `deploy-service.ps1` self-check + independent curl of all 7 routes (200) + sibling sites unaffected |
 
 ## Decisions
 
